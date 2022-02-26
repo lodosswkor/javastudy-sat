@@ -17,14 +17,17 @@
 // a) 클래스 블록 (필수) 
 // b) 메서드 블록 (옵션) 
 // HelloWorld 클래스 
-public class HelloWorld { // 클래스 블록 
+public class HelloWorld
+ { // 클래스 블록 
 
 	// HelloWorld 프로그램의 시작포인트 
+
 	public static void main(String[] args) { // 메소드 블록 
 		System // 클래스
 		.out // 변수(맴버) 
 		.println("하악하악, HelloWorld"); // 메소드 
 	}
+	
 	
 }
 
@@ -46,7 +49,13 @@ public class HelloWorld { // 클래스 블록
    Hello + World -> helloWorld 
    I + am + a + boy -> iAmABoy 
  
- * */
+   4) 자바는 대소문자를 구분합니다. 
+   HelloWorld 
+   helloWorld
+   helloworld 
+   helLoworld 
+   
+ */
 
 
 
