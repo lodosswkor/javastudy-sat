@@ -78,7 +78,7 @@ public class Person {
 		p.name = "하악하악";
 		p.sayName();
 		
-		PersonClass pa = new PersonClassA("박은진"); // 다형성 개념
+		PersonClassA pa = new PersonClassA("박은진"); // 다형성 개념
 		PersonClass pb = new PersonClassB("김진수");
 		pa.sayName();
 		pa.sayName("이종석");

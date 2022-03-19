@@ -23,11 +23,13 @@ class Human extends Animal {
 	String name; 
 	int age; 
 	
+	// 생성자 오버로딩
 	Human() {}
 	Human(String n, int a) { // 생성자
 		name = n;
 		age = a; 
 	}
+	// 
 	
 	void bark() {
 		System.out.println("난 짐승이 아냐.");
