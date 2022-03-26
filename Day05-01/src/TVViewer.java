@@ -19,6 +19,10 @@ public class TVViewer {
 		((Nintendo)tv).attachNintendo();
 		((Nintendo)tv).dettachNintendo();
 		
+		TvInterface arrTv[] = new TvInterface[2];
+		arrTv[0] = new SamsungTv();
+		arrTv[1] = new LgTv();
+		
 		
 	}
 	
