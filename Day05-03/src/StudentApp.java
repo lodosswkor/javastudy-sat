@@ -5,15 +5,47 @@ public class StudentApp {
 	
 	final static int stdCount = 100; 
 	static int insertedStdCount = 0; 
+	//-- 학생수는 최대 100명 
+	Student std[] = new Student[stdCount];
+	
+	//-- 학생 입력 및 저장 
+	public static void saveStudent() {
+		
+	}
+	
+	//-- 학생 검색
+	public static void searchStudent() {
+		
+	}
+	
+	//-- 학생 출력 (목록) 
+	public static void printStudentsByLine() {
+		
+	}
+	
+	
 	
 	public static void main(String args[]) {
 
-		//-- 학생수는 최대 100명 
-		Student std[] = new Student[stdCount];
 		
 		do {
 			
 			Scanner sc = new Scanner(System.in);
+			int command = sc.nextInt();
+			
+			switch(command) {
+			
+				case 1 : // 학생입력 
+					saveStudent(); 
+					break; 
+				case 2 : // 학생검색
+					searchStudent();
+					break;
+				case 0 : // 프로그램 종료 
+				    break;
+			}
+			
+			
 			
 			String name, gender;
 			String grade, point; 
