@@ -71,6 +71,8 @@ public class StudentApp {
 	public static void main(String args[]) {
 
 		
+		boolean exitProgram = false; 
+		
 		do {	
 			Scanner sc = new Scanner(System.in);
 			System.out.print("명령어 입력(1:학생입력,2:학생검색) :");
@@ -78,7 +80,6 @@ public class StudentApp {
 			
 			
 			switch(command) {
-			
 				case 1 : // 학생입력 
 					saveStudent(); 
 					break; 
@@ -86,10 +87,11 @@ public class StudentApp {
 					searchStudent();
 					break;
 				case 0 : // 프로그램 종료 
+					exitProgram = true;
 				    break;
 			}
 		    
-		} while(true);
+		} while(!exitProgram);
 	    
 		
 	}
