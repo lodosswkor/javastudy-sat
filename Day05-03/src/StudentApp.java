@@ -4,6 +4,7 @@ import kr.students.Student;
 public class StudentApp {
 	
 	final static int stdCount = 100; 
+	static int insertedStdCount = 0; 
 	
 	public static void main(String args[]) {
 		
@@ -32,8 +33,18 @@ public class StudentApp {
 	    std_info.setGrade(grade);
 	    std_info.setGender(gender);
 	    std_info.setPoint(point);
-		
-	    std_info.printMe(); 
+	    
+	    std[insertedStdCount++] = std_info;
+
+	    System.out.println("입력된 학생 출력하기");
+	    System.out.println("이름\t학년\t성별\t점수");
+	    
+	    for(int i=0;i<insertedStdCount;i++) {
+	    	std[i].printMeByLine();
+	    }
+	    
+	    System.out.println("\n\n");
+	    
 		
 	}
 }
