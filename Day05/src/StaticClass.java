@@ -6,6 +6,8 @@ class StaticEx {
 	}
 }
 
+// java StaticClass
+// -> StaticClass.main()
 
 public class StaticClass {
 	
