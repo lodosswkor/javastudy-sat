@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.HashMap; 
 import java.util.List; 
 import java.util.ArrayList; 
+import java.util.Iterator;
 
 public class HashMapEx {
 
@@ -47,6 +48,10 @@ public class HashMapEx {
 		Student std_1 = (Student)school.get(2);
 		std_1.sayName();
 		
+		Iterator it = school.iterator();
+		while(it.hasNext()) {
+			((Student)(it.next())).sayName();
+		}		
 		
 		
 	}
