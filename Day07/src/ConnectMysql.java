@@ -33,7 +33,19 @@ public class ConnectMysql {
 				   "dlwhdtjrA123" // PASSWORD
 			);
 			System.out.println("데이터베이스 연결성공");
+			
+			//-- 셀렉트 
 			printNaverPrices(conn);
+			
+			//-- 인서트 
+			NaverPriceVO vo = new NaverPriceVO(); 
+			vo.setGoods_name("종석패드");
+			vo.setPrice(500);
+			vo.setGoods_link("http://naver.com/1");
+			vo.setRegi_date("2022-04-03");
+			
+			insertNaverPrice(conn, vo);
+			
 		} catch (ClassNotFoundException e) {
 			System.out.println("드라이버 로딩 실패");
 		} catch (SQLException e) {
@@ -84,10 +96,10 @@ public class ConnectMysql {
 		String sql = "insert naver_price ("
 				   + "goods_name, price, goods_link, regi_date"
 				   + ") values ("
-				   + vo.getGoods_name() + ","
-				   + vo.getPrice() + ","
-				   + vo.getGoods_link() + ","
-				   + vo.getRegi_date()
+				   + "'" + vo.getGoods_name() + "',"
+				   + "'" + vo.getPrice() + "',"
+				   + "'" + vo.getGoods_link() + "',"
+				   + "'" + vo.getRegi_date() + "'"
 				   + ")";
 		
 		System.out.println(sql); 
