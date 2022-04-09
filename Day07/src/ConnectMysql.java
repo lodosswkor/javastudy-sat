@@ -2,6 +2,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /*
  Host :
@@ -54,8 +56,10 @@ public class ConnectMysql {
 	//-----------------------------------------
 	//-- 전체 데이터를 들고오는 메서드 
 	//-----------------------------------------
+	
 	public static void printNaverPrices(Connection conn) 
-	throws Exception {
+	throws Exception
+	{
 		
 		String sql = "select * from naver_price"; 
 		
@@ -63,8 +67,16 @@ public class ConnectMysql {
 	    Statement stmt = conn.createStatement(); 
 	    ResultSet rs = stmt.executeQuery(sql);
 	    
+	    List<NaverPriceVO> list 
+	    		= new ArrayList<NaverPriceVO>(); 
+	    
 	    while(rs.next()) {
-	    	System.out.println(rs.getString("goods_name"));
+	    	NaverPriceVO vo = new NaverPriceVO();
+	    	vo.setGoods_name(rs.getString("goods_name"));
+	    	vo.setGoods_link(rs.getString("goods_link"));
+	    	vo.setRegi_date(rs.getString("regi_date"));
+	    	vo.setPrice(rs.getInt("price"));
+	    	list.add(vo);
 	    }
 		
 	}
