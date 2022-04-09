@@ -91,9 +91,10 @@ public class ConnectMysql {
 	//-----------------------------------------
 	
 	public static void insertNaverPrice(
-			Connection conn, NaverPriceVO vo) {
+			Connection conn, NaverPriceVO vo) 
+	throws Exception {
 		
-		String sql = "insert naver_price ("
+		String sql = "insert into naver_price ("
 				   + "goods_name, price, goods_link, regi_date"
 				   + ") values ("
 				   + "'" + vo.getGoods_name() + "',"
@@ -104,8 +105,10 @@ public class ConnectMysql {
 		
 		System.out.println(sql); 
 		//-- SQL 에디터열기 
-		//Statement stmt = conn.createStatement(); 
-		//stmt.executeUpdate(sql);
+		Statement stmt = conn.createStatement(); 
+		//-- SQL 문 실행 
+		stmt.executeUpdate(sql);
+		System.out.println("등록완료");
 		
 	}
 	
