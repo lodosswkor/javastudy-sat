@@ -1,5 +1,6 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -39,7 +40,7 @@ public class ConnectMysql {
 			
 			//-- 인서트 
 			NaverPriceVO vo = new NaverPriceVO(); 
-			vo.setGoods_name("종석패드");
+			vo.setGoods_name("종석패드11");
 			vo.setPrice(500);
 			vo.setGoods_link("http://naver.com/1");
 			vo.setRegi_date("2022-04-03");
@@ -55,6 +56,11 @@ public class ConnectMysql {
 			NaverPriceVO vo3 = new NaverPriceVO();
 			vo3.setGoods_name("아이폰13pro");
 			updateNaverPrice(conn, vo3);
+			
+			//-- SQL Injection 
+			//NaverPriceVO vo4 = new NaverPriceVO(); 
+			//vo4.setGoods_name("' OR '1' = '1");
+			//deleteNaverPrice(conn, vo4); 
 			
 		} catch (ClassNotFoundException e) {
 			System.out.println("드라이버 로딩 실패");
@@ -104,7 +110,7 @@ public class ConnectMysql {
 			Connection conn, NaverPriceVO vo) 
 	throws Exception {
 		
-		String sql = "insert into naver_price ("
+		/*String sql = "insert into naver_price ("
 				   + "goods_name, price, goods_link, regi_date"
 				   + ") values ("
 				   + "'" + vo.getGoods_name() + "',"
@@ -118,7 +124,24 @@ public class ConnectMysql {
 		Statement stmt = conn.createStatement(); 
 		//-- SQL 문 실행 
 		stmt.executeUpdate(sql);
-		System.out.println("등록완료");
+		System.out.println("등록완료");*/
+		
+		String sql = "insert into naver_price\n"
+		           + "(goods_name, price, goods_link, regi_date)\n" 
+				   + "values (?,?,?,?)"; 
+		
+		PreparedStatement pstmt 
+				   = conn.prepareStatement(sql); 
+		
+		pstmt.setString(1, vo.getGoods_name());
+		pstmt.setInt(2, vo.getPrice());
+		pstmt.setString(3, vo.getGoods_link());
+		pstmt.setString(4, vo.getRegi_date());
+	
+		pstmt.executeUpdate(); // 쿼리실행 
+		pstmt.close(); 
+		
+		System.out.println("입력완료");
 		
 	}
 
