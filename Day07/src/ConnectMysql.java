@@ -1,6 +1,7 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,36 +20,27 @@ import java.sql.Connection;
 
 public class ConnectMysql {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args){
 			
 		Connection conn = null; 
 		
 		try {
-			//Class.forName("org.mariadb.jdbc.Driver");
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			
 			System.out.println("드라이버 로딩 성공");
-			
-			//javalec-sat.crwq4oaekhum.ap-northeast-2.rds.amazonaws.com
 			conn = DriverManager.getConnection(
 				   "jdbc:mysql://javalec-sat.crwq4oaekhum.ap-northeast-2.rds.amazonaws.com:3306/lecturer_db", // URL (HOST) 
 				   "admin", // ID 
 				   "dlwhdtjrA123" // PASSWORD
-			);	
+			);
 			System.out.println("데이터베이스 연결성공");
-			
-			// 네이버 프라이스 select 호출 
 			printNaverPrices(conn);
-						
-		} catch(Exception e) {
-			System.out.println(e.getMessage());
-		} finally {
-			if(conn != null) { 
-				try { conn.close(); } 
-				catch(Exception e) {} 
-			}
+		} catch (ClassNotFoundException e) {
+			System.out.println("드라이버 로딩 실패");
+		} catch (SQLException e) {
+		    System.out.println(e.getMessage());
+		} catch (Exception e) {
+			System.out.println("개 에러");
 		}
-		
 		
 	}
 	

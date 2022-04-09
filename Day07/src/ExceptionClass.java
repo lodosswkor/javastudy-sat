@@ -1,6 +1,6 @@
 
 import java.util.*;
-// 예외처리 방식 1: try {} catch{} finaliy {}
+// 예외처리 방식 1: try {} catch{} finally {}
 // 예외처리 방식 2: throws 예외 
 public class ExceptionClass {
 
@@ -8,10 +8,6 @@ public class ExceptionClass {
 		
 		boolean loop = true; 
 		
-		if(10>5) 
-			System.out.prinln("aa");
-			System.out.println("bnn");
-			
 		while(loop) {
 			System.out.print("숫자를 입력해 주세요");
 			Scanner sc = new Scanner(System.in);
