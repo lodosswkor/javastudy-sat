@@ -46,6 +46,11 @@ public class ConnectMysql {
 			
 			insertNaverPrice(conn, vo);
 			
+			//-- 딜리트 
+			NaverPriceVO vo2 = new NaverPriceVO(); // 낭비 
+			vo2.setGoods_name("종석패드"); 
+			deleteNaverPrice(conn, vo2);
+			
 		} catch (ClassNotFoundException e) {
 			System.out.println("드라이버 로딩 실패");
 		} catch (SQLException e) {
@@ -111,7 +116,23 @@ public class ConnectMysql {
 		System.out.println("등록완료");
 		
 	}
+
+	//-----------------------------------------
+	//-- D: 데이터 삭제 
+	//-----------------------------------------
 	
-	
+	public static void deleteNaverPrice
+	(Connection conn, NaverPriceVO vo) throws Exception {
+		
+		String sql = "delete from naver_price \n"
+				   + "where goods_name = '"
+				   + vo.getGoods_name() + "'";
+		
+		System.out.println(sql);
+		
+		Statement stmt = conn.createStatement(); 
+		stmt.executeUpdate(sql);
+		System.out.println(vo.getGoods_name() + ":: 삭제완료");
+	}
 	
 }
