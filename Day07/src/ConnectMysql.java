@@ -46,7 +46,7 @@ public class ConnectMysql {
 	
 	
 	//-----------------------------------------
-	//-- 전체 데이터를 들고오는 메서드 
+	//-- R: 전체 데이터를 들고오는 메서드 
 	//-----------------------------------------
 	
 	public static void printNaverPrices(Connection conn) 
@@ -72,5 +72,31 @@ public class ConnectMysql {
 	    }
 		
 	}
+	
+
+	//-----------------------------------------
+	//-- C: 데이터 생성 
+	//-----------------------------------------
+	
+	public static void insertNaverPrice(
+			Connection conn, NaverPriceVO vo) {
+		
+		String sql = "insert naver_price ("
+				   + "goods_name, price, goods_link, regi_date"
+				   + ") values ("
+				   + vo.getGoods_name() + ","
+				   + vo.getPrice() + ","
+				   + vo.getGoods_link() + ","
+				   + vo.getRegi_date()
+				   + ")";
+		
+		System.out.println(sql); 
+		//-- SQL 에디터열기 
+		//Statement stmt = conn.createStatement(); 
+		//stmt.executeUpdate(sql);
+		
+	}
+	
+	
 	
 }
