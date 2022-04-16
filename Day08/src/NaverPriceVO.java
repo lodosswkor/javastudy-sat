@@ -12,7 +12,10 @@ public class NaverPriceVO {
 		this.goodName = goodName;
 	}
 	public String getGoodPrice() {
-		return goodPrice.replaceAll(",", "");
+		String price = goodPrice.replaceAll(",", "");
+		price = price.replace("¿ø", ""); 
+		// 500,000¿ø -> 500000 
+		return price;
 	}
 	public void setGoodPrice(String goodPrice) {
 		this.goodPrice = goodPrice;

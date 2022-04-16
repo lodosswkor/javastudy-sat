@@ -27,9 +27,31 @@ public class NaverPriceCrawling {
 	public static void main(String[] args) throws Exception {
 		
 		// 1.1 검색어 받기 
-		System.out.print("검색하고자 하는 상품을 입력하세요 :");
-		Scanner sc = new Scanner(System.in);
-		String searchText = sc.nextLine();
+		// 사용자 입력을 기다린다. 
+//		System.out.print("검색하고자 하는 상품을 입력하세요 :");
+//		Scanner sc = new Scanner(System.in);
+//		String searchText = sc.nextLine();
+//		
+//		String minPrice, maxPrice; 
+//		System.out.print("최저가를 입력해 주세요 : ");
+//		minPrice = sc.nextLine();
+//		
+//		System.out.println("최고가를 입력해 주세요 : ");
+//		maxPrice = sc.nextLine(); 
+		
+		// java NaverPriceCrawling 맥북 500000 30000000 
+		// String args[] 매개변수(인자) 활용 
+		
+		
+		if(args.length < 3) {
+			System.out.println
+			("사용법 : java NaverPriceCrawling 상품명 최소가격 최대가격" ); 
+			return;
+		}
+
+		String searchText = args[0];
+		String minPrice = args[1];
+		String maxPrice = args[2]; 
 		
 		// 네이버 가격비교 사이트에 검색어를 전달 
 		// 검색 목록을 받아오기 
@@ -38,10 +60,15 @@ public class NaverPriceCrawling {
 		String naverUrl 
 	    = "https://search.shopping.naver.com"
 	    + "/search/all?"
-	    + "query=" + searchText
-	    + "&minPrice=500000"
-	    + "&maxPrice=1000000"
+	    + "query=%s"
+	    + "&minPrice=%s" 
+	    + "&maxPrice=%s" 
 	    + "&sort=price_asc";
+		
+		naverUrl = String.format(naverUrl, 
+								 searchText,
+								 minPrice,
+								 maxPrice); 
 		
 		// jsoup 
 		// 1. 커넥션 
@@ -84,11 +111,11 @@ public class NaverPriceCrawling {
 		}
 		*/
 		writeExcelFile(lists, "D:\\naverprice.csv");
-		
+		writeDB(lists);
 		
 	}
 	
-	
+	// -- 엑셀로 쓰기 메소드 
 	public static void writeExcelFile
 	(List<NaverPriceVO> lists, String fileName) {
 		
@@ -122,5 +149,19 @@ public class NaverPriceCrawling {
 		}
 	}
 	
+	
+	//-- 데이터 베이스에 쌓기 
+	public static void writeDB(List<NaverPriceVO> lists) 
+	throws Exception 
+	{
+		//-- 0.객체생성 
+		NaverPriceDB nPriceDb = NaverPriceDB.getInstance();
+		//-- 1.디비연결하기 
+		nPriceDb.connectDB();
+		//-- 2.디비에 넣기
+		nPriceDb.insertNaverPrice(lists);
+		//-- 3.디비닫기
+		nPriceDb.closeDB();
+	}
 	
 }

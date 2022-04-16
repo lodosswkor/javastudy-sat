@@ -27,7 +27,8 @@ public class HtmlParser {
 		
 		Document html = HtmlParser.conn.get(); // <--이부분만 다름
 		Elements lists 
-			= html.select(".list_basis > div > div");
+			//= html.select(".list_basis > div > div");
+		    = html.select(".lists > .list-post");
 
 		System.out.println("상품목록 : " + lists.size());
 		
