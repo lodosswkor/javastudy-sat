@@ -152,6 +152,7 @@ public class ConnectMysql {
 	public static void deleteNaverPrice
 	(Connection conn, NaverPriceVO vo) throws Exception {
 		
+		/*
 		String sql = "delete from naver_price \n"
 				   + "where goods_name = '"
 				   + vo.getGoods_name() + "'";
@@ -161,6 +162,19 @@ public class ConnectMysql {
 		Statement stmt = conn.createStatement(); 
 		stmt.executeUpdate(sql);
 		System.out.println(vo.getGoods_name() + ":: 삭제완료");
+		*/
+		
+		String sql = "delete from naver_price where "
+				   + "goods_name = ?"; 
+		
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, vo.getGoods_name());
+		pstmt.executeUpdate(); 
+		pstmt.close();
+		
+		System.out.println(vo.getGoods_name() + ":: 삭제완료");
+		
+		
 	}
 	
 
@@ -171,6 +185,7 @@ public class ConnectMysql {
 	public static void updateNaverPrice
 	(Connection conn, NaverPriceVO vo) throws Exception {
 		
+		/*
 		 String sql = "update naver_price set \n"
 		            + "price = price + 10000 " 
 				    + "where goods_name = '" 
@@ -180,7 +195,19 @@ public class ConnectMysql {
 		 Statement stmt = conn.createStatement();
 		 stmt.executeUpdate(sql);
 		 System.out.println(vo.getGoods_name() + " :: 수정완료"); 
+		*/
 		
+		String sql = "update naver_price \n"
+				   + "price = price + 10000 \n"
+				   + "where goods_name = ?"; 
+		
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, vo.getGoods_name());
+		pstmt.executeUpdate(); 
+		pstmt.close(); 
+		
+		System.out.println(vo.getGoods_name() + " :: 수정완료"); 
+			
 	}
 	
 }
